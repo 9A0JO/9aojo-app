@@ -19,7 +19,7 @@ class OrderPage extends GetView<OrderController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Teste"),
+          title: const Text("Envio de ordem de serviço"),
         ),
         body: Container(
             constraints: const BoxConstraints.expand(),
@@ -77,7 +77,16 @@ class OrderPage extends GetView<OrderController> {
                       Expanded(
                           child: ElevatedButton(
                               onPressed: () => controller.finishStartOrder(),
-                              child: const Text("Finalizar")))
+                              child: Obx(
+                                () {
+                                  if (controller.screenState.value ==
+                                      OrderState.creating) {
+                                    return const Text('Iniciar');
+                                  } else {
+                                    return const Text("Finalizar");
+                                  }
+                                },
+                              )))
                     ]),
                   ],
                 ),
