@@ -76,6 +76,7 @@ class OrderController extends GetxController with StateMixin<OrderCreated> {
       }
     }).catchError((error) {
       Get.snackbar("Erro", error.toString());
+      clearForm();
     });
   }
 
