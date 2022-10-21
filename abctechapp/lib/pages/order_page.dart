@@ -2,7 +2,7 @@ import 'package:abctechapp/controller/order_controller.dart';
 import 'package:abctechapp/model/assist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class OrderPage extends GetView<OrderController> {
   const OrderPage({Key? key}) : super(key: key);
@@ -31,6 +31,12 @@ class OrderPage extends GetView<OrderController> {
               ))
             ]),
             TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'O código do prestador não pode ser vazio';
+                }
+                return null;
+              },
               controller: controller.operatorIdController,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
@@ -65,18 +71,21 @@ class OrderPage extends GetView<OrderController> {
             ),
             Row(children: [
               Expanded(
-                  child: ElevatedButton(
-                      onPressed: () => controller.finishStartOrder(),
-                      child: Obx(
-                        () {
-                          if (controller.screenState.value ==
-                              OrderState.creating) {
-                            return const Text("Iniciar");
-                          } else {
-                            return const Text("Finalizar");
-                          }
-                        },
-                      )))
+                  child: ElevatedButton(onPressed: () {
+                if (controller.formKey.currentState!.validate()) {
+                  if (controller.selectedAssists.isNotEmpty) {
+                    controller.finishStartOrder();
+                  }
+                }
+              }, child: Obx(
+                () {
+                  if (controller.screenState.value == OrderState.creating) {
+                    return const Text("Iniciar");
+                  } else {
+                    return const Text("Finalizar");
+                  }
+                },
+              )))
             ]),
           ],
         ),
