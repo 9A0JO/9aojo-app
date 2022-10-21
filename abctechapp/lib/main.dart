@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Abc Tech App',
+      title: 'AbcTechApp',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.indigo,
           textTheme:
               const TextTheme(headline4: TextStyle(color: Colors.yellow))),
       getPages: [

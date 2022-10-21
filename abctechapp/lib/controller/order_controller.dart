@@ -1,18 +1,16 @@
+import 'package:abctechapp/model/assist.dart';
+import 'package:abctechapp/model/order.dart';
 import 'package:abctechapp/model/order_created.dart';
+import 'package:abctechapp/model/order_location.dart';
 import 'package:abctechapp/services/geolocation_service.dart';
 import 'package:abctechapp/services/order_service.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:get/get.dart';
-import '../model/assist.dart';
-import '../model/order.dart';
-import '../model/order_location.dart';
 
 enum OrderState { creating, started, finished }
 
 class OrderController extends GetxController with StateMixin<OrderCreated> {
-  // ignore: unused_field
   final GeolocationServiceInterface _geolocationService;
   final OrderService _orderService;
   final formKey = GlobalKey<FormState>();

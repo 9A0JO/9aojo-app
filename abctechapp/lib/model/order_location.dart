@@ -4,13 +4,12 @@ import 'dart:convert';
 class OrderLocation {
   double latitude;
   double longitude;
-  DateTime dateTime;
+  DateTime dateTime = DateTime.now();
 
-  OrderLocation({
-    required this.latitude,
-    required this.longitude,
-    required this.dateTime,
-  });
+  OrderLocation(
+      {required this.latitude,
+      required this.longitude,
+      required this.dateTime});
 
   OrderLocation copyWith({
     double? latitude,
